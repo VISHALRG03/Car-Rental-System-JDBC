@@ -1,0 +1,37 @@
+
+-- Create the car_rental database
+CREATE DATABASE car_rental;
+
+-- Use the car_rental database
+USE car_rental;
+
+-- Create the Cars table
+CREATE TABLE Cars (
+    car_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    year INT NOT NULL,
+    rental_rate DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
+
+-- Create the Customers table
+CREATE TABLE Customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);
+
+-- Create the Bookings table
+CREATE TABLE Bookings (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    car_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    rental_date DATE NOT NULL,
+    return_date DATE NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (car_id) REFERENCES Cars(car_id),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
